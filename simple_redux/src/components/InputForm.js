@@ -40,8 +40,8 @@ export default function InputForm({title, actions, store}) {
 		}));
 	}
 
-	function removeItem (goal) {
-		store.dispatch(removeGoalAction(goal.id));
+	function removeItem (props) {
+		store.dispatch(removeGoalAction(props.id));
 	}
 
   return (

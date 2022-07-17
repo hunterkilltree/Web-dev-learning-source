@@ -57,7 +57,6 @@ class App extends React.Component {
     return (
       <>
         {/* <InputForm title="Todos" actions={todos} store={store}/> */}
-        {/* <ListItems items={items} /> */}
         <InputForm title="Goals" actions={goals} store={store}/>
       </>
     );
