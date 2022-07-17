@@ -13,5 +13,7 @@ Create the simple demonstration which handle the action ADD, DELETE, TOGGLE by r
 
 ### App structure
 |__ InputForm.js
+
 |__ ListItems.js
+
 |__ Reducers.js
