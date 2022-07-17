@@ -8,6 +8,11 @@ npm install @mui/material @emotion/react @emotion/styled
 npm install @reduxjs/toolkit
 ```
 
+* Add dependency to work with api demo asyn
+```
+npm i goals-todos-api
+```
+
 ### Goal
 Create the simple demonstration which handle the action ADD, DELETE, TOGGLE by redux toolkit
 
