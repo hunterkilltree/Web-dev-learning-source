@@ -35,6 +35,15 @@ function goals (state = [], action) {
 	}
 }
 
+function loading(state = true, action) {
+	switch(action.type) {
+		case RECEIVE_DATA:
+			return false;
+		default:
+			return state;
+	}
+}
+
 const checker = (store) => (next) => (action) => {
 	if (
 		action.type === ADD_TODO &&
@@ -64,6 +73,7 @@ const logger = (store) => (next) => (action) => {
 const store = createStore(combineReducers({
 	todos,
 	goals,
+	loading,
 }), applyMiddleware(checker, logger));
 
 export default store;

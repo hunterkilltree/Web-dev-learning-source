@@ -69,8 +69,14 @@ class App extends React.Component {
   }
 
   render() {
-    const { todos, goals } = store.getState();
-
+    const { todos, goals, loading } = store.getState();
+    
+    if (loading) {
+      return (
+        <h3>loading</h3>
+      )
+    }
+    
     return (
       <>
         {/* <InputForm title="Todos" actions={todos} store={store}/> */}
