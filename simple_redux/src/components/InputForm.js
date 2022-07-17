@@ -1,6 +1,8 @@
 import { TextField, Button } from '@mui/material';
 import ListItems from './ListItems';
 import React, { useEffect, useState, useRef } from "react";
+import API from 'goals-todos-api';
+
 
 const ADD_TODO = 'ADD_TODO'
 const REMOVE_TODO = 'REMOVE_TODO'
@@ -42,6 +44,12 @@ export default function InputForm({title, actions, store}) {
 
 	function removeItem (props) {
 		store.dispatch(removeGoalAction(props.id));
+
+		return API.deleteGoal(props.id)
+		.catch(() => {
+			props.store.dispatch(addGoalAction(props))
+			alert('An error occurred. Try Again.')
+		})
 	}
 
   return (
