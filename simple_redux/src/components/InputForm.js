@@ -28,6 +28,17 @@ function generateId () {
 	return Math.random().toString(36).substring(2) + (new Date()).getTime().toString(36)
 }
 
+function handleDeleteGoal(goal) {
+	return (dispatch) => {
+		dispatch(removeGoalAction(goal.id))
+		return API.deleteGoal(goal.id)
+		.catch(() => {
+			dispatch(addGoalAction(goal))
+			alert('An error occured. Try again')
+		})
+	}
+}
+
 export default function InputForm({title, actions, store}) {
 	const textRef = useRef();
 
@@ -43,13 +54,14 @@ export default function InputForm({title, actions, store}) {
 	}
 
 	function removeItem (props) {
-		store.dispatch(removeGoalAction(props.id));
+		store.dispatch(handleDeleteGoal(props));
+		// store.dispatch(removeGoalAction(props.id));
 
-		return API.deleteGoal(props.id)
-		.catch(() => {
-			props.store.dispatch(addGoalAction(props))
-			alert('An error occurred. Try Again.')
-		})
+		// return API.deleteGoal(props.id)
+		// .catch(() => {
+		// 	props.store.dispatch(addGoalAction(props))
+		// 	alert('An error occurred. Try Again.')
+		// })
 	}
 
   return (

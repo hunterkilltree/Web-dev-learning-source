@@ -70,10 +70,18 @@ const logger = (store) => (next) => (action) => {
 	console.groupEnd()
 	return result
 }
+
+const thunk = (store) => (next) => (action) => {
+	if (typeof action === 'function') {
+	  return action(store.dispatch)
+	}
+
+	return next(action)
+  }
 const store = createStore(combineReducers({
 	todos,
 	goals,
 	loading,
-}), applyMiddleware(checker, logger));
+}), applyMiddleware(thunk, checker, logger));
 
 export default store;
