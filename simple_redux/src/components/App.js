@@ -54,17 +54,22 @@ function receiveDataAction(todos, goals) {
 	}
 }
 
+function handleInitialData() {
+  return(dispatch) => {
+    return Promise.all([
+      API.fetchTodos(),
+      API.fetchGoals(),
+    ]).then(([todos, goals]) => {
+      dispatch(receiveDataAction(todos, goals))
+    });
+  }
+}
 
 class App extends React.Component {
 
   componentDidMount () {
     //initial data
-    Promise.all([
-      API.fetchTodos(),
-      API.fetchGoals(),
-    ]).then(([todos, goals]) => {
-      store.dispatch(receiveDataAction(todos, goals))
-    });
+    store.dispatch(handleInitialData());
     store.subscribe(() => this.forceUpdate())
   }
 
