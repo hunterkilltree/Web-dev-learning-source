@@ -39,18 +39,33 @@ function handleDeleteGoal(goal) {
 	}
 }
 
+function handleAddGoal(name, cb) {
+	return (dispatch) => {
+		return API.saveGoal(name)
+			.then((goal) => {
+				dispatch(addGoalAction(goal))
+				cb()
+			})
+			.catch(() => alert('There was an error'))
+	}
+}
+
 export default function InputForm({title, actions, store}) {
 	const textRef = useRef();
 
 	function addItem (event) {
 		event.preventDefault();
-		const name = textRef.current.value;
-		textRef.current.value ='';
+		// const name = textRef.current.value;
+		// textRef.current.value ='';
 
-		store.dispatch(addGoalAction({
-			id: generateId(),
-			name,
-		}));
+		// store.dispatch(addGoalAction({
+		// 	id: generateId(),
+		// 	name,
+		// }));
+		store.dispatch(handleAddGoal(
+			textRef.current.value,
+			() => textRef.current.value = ''
+		))
 	}
 
 	function removeItem (props) {
