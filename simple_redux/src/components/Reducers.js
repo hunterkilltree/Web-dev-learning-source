@@ -1,4 +1,5 @@
 import { configureStore, combineReducers, applyMiddleware, createStore} from '@reduxjs/toolkit';
+import ReduxThunk from 'redux-thunk';
 
 const ADD_TODO = 'ADD_TODO'
 const REMOVE_TODO = 'REMOVE_TODO'
@@ -77,11 +78,12 @@ const thunk = (store) => (next) => (action) => {
 	}
 
 	return next(action)
-  }
+}
+
 const store = createStore(combineReducers({
 	todos,
 	goals,
 	loading,
-}), applyMiddleware(thunk, checker, logger));
+}), applyMiddleware(ReduxThunk, checker, logger));
 
 export default store;

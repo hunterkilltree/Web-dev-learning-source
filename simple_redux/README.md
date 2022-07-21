@@ -8,6 +8,11 @@ npm install @mui/material @emotion/react @emotion/styled
 npm install @reduxjs/toolkit
 ```
 
+* Add Redux thunk
+```
+npm install redux-thunk
+```
+
 * Add dependency to work with api demo asyn
 ```
 npm i goals-todos-api
