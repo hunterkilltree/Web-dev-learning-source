@@ -1,13 +1,25 @@
 import { RECEIVE_USERS } from "../actions/user"
+import { ADD_POLL } from "../actions/poll"
 
-export default function users (state = {}, action) {
+export default function users(state = {}, action) {
   switch (action.type) {
-    case RECEIVE_USERS :
+    case RECEIVE_USERS:
       return {
         ...state,
-        ...users,
+        ...action.users,
       }
-    default :
+    case ADD_POLL:
+      const poll = action.poll
+      const { author, id } = poll
+
+      return {
+        ...state,
+        [author]: {
+          ...state[author],
+          polls: state[author].polls.concat([id])
+        }
+      }
+    default:
       return state
   }
 }

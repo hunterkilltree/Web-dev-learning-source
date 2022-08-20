@@ -7,5 +7,6 @@ import polls from './poll'
 export default combineReducers({
   authedUser,
   users,
+  polls,
   loadingBar: loadingBarReducer
 })
