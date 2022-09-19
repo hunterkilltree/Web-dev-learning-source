@@ -1,10 +1,10 @@
 import * as React from 'react'
 import { handleAddPoll } from '../actions/poll'
-import { useNavigate } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 
 export default function AddPoll() {
-  const navigate  = useNavigate()
+  const navigate  = useHistory()
   const dispatch = useDispatch()
 
   const [options, setOptions] = React.useState({
